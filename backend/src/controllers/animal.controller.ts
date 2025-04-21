@@ -7,11 +7,22 @@ export const getAllAnimals = async (_req: Request, res: Response) => {
     res.json(animals);
 }
 
-export const getAnimalById = async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const animal = await Animal.findById(id);
-    if (!animal) return res.status(404).json({ message: 'Animal not found' });
-    res.json(animal);
+export const getAnimalById = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id } = req.params;
+        console.log('📦 Buscando animal con ID:', id);
+        const animal = await Animal.findById(id);
+    
+        if (!animal) {
+            res.status(404).json({ message: 'Animal not found' });
+            return 
+        }
+    
+        res.json(animal);
+      } catch (err) {
+        console.error('❌ Error en getAnimalById:', err);
+        res.status(500).json({ message: 'Server error', error: err });
+      }
   };
 
 export const createAnimal = async (req: Request, res: Response) => {
@@ -25,7 +36,13 @@ export const createAnimal = async (req: Request, res: Response) => {
 }
 
 export const deleteAnimal = async (req: Request, res: Response) => {
-    const {id} = req.params;
-    await Animal.findByIdAndDelete(id);
-    res.status(204).send();
-}
+    try {
+      const { id } = req.params;
+      console.log('🗑 Eliminando animal con ID:', id);
+      await Animal.findByIdAndDelete(id);
+      res.status(204).send();
+    } catch (err) {
+      console.error('❌ Error en deleteAnimal:', err);
+      res.status(500).json({ message: 'Server error', error: err });
+    }
+  };

@@ -1,6 +1,7 @@
 import { Document, model, Schema } from "mongoose";
 
 export interface IAnimal extends Document {
+    id: string;
     name: string;
     scientificName: string;
     habitat?: string;

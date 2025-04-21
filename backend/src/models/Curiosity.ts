@@ -13,6 +13,9 @@ const curiositySchema = new Schema<ICuriosity>(
     },
     {
         versionKey: false,
+        toJSON: {
+            virtuals:true
+        }
     }
 )
 

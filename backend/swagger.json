@@ -1,0 +1,47 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Zenda API",
+      "version": "1.0.0",
+      "description": "Documentación de la API de Zenda (Animales + Curiosidades)"
+    },
+    "paths": {
+      "/api/animals": {
+        "get": {
+          "summary": "Obtener todos los animales",
+          "responses": {
+            "200": {
+              "description": "Lista de animales"
+            }
+          }
+        },
+        "post": {
+          "summary": "Crear nuevo animal",
+          "responses": {
+            "201": {
+              "description": "Animal creado"
+            }
+          }
+        }
+      },
+      "/api/curiosities": {
+        "get": {
+          "summary": "Obtener todas las curiosidades",
+          "responses": {
+            "200": {
+              "description": "Lista de curiosidades"
+            }
+          }
+        },
+        "post": {
+          "summary": "Crear curiosidad",
+          "responses": {
+            "201": {
+              "description": "Curiosidad creada"
+            }
+          }
+        }
+      }
+    }
+  }
+  
